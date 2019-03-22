@@ -1,0 +1,17 @@
+# Base the image on node:alpine 
+FROM node:alpine
+
+# Working directory inside the container
+WORKDIR '/app'
+
+# Copy package.json to working directory
+# Install dependencies specified in package.json
+COPY package.json .
+RUN npm install
+
+# Copy everything from current directory 
+# to workdir in container  
+COPY . .
+
+# Define start command npm run start
+CMD ["npm", "run", "start"]

@@ -1,0 +1,24 @@
+version: '3'
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "3000:3000"
+        volumes:
+            - /app/node_modules # Reference node_module from RUN npm install step 
+            - .:/app # Reference current host directory '.' to ':'/app workdir
+    tests:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /app/node_modules
+            - .:/app
+        command: ["npm", "run", "test"]
+    # Alternativ to run tests do the following:
+    # 1) docker-compose up 
+    #    Runs the container
+    # 2) docker exec -it 3aef3566d771 npm run test
+    #    Execute npm run test command on the running container in interactive mode
