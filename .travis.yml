@@ -23,7 +23,7 @@ deploy:
   region: "us-east-2" # region where elasticbeanstalk is deployed http://dockerreact-env.e3phanpi8m.us-east-2.elasticbeanstalk.com/
   app: "docker-react" # app name inside travis
   env: "DockerReact-env" # Environment from elasticbeanstalk
-  bucket_name: "/elasticbeanstalk-us-east-2-109426728179" # S3 Bucket
+  bucket_name: "elasticbeanstalk-us-east-2-109426728179" # S3 Bucket
   bucket_path: "docker-react"
   on:
     branch: master # Only deploy when master branch has been changed
