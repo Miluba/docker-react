@@ -17,3 +17,16 @@ before_install:
 script:
   - docker run miluba154/docker-react npm run test -- --coverage 
   # '-- --coverage' Because test will not exit without coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2" # region where elasticbeanstalk is deployed http://dockerreact-env.e3phanpi8m.us-east-2.elasticbeanstalk.com/
+  app: "docker-react" # app name inside travis
+  env: "DockerReact-env" # Environment from elasticbeanstalk
+  bucket_name: "/elasticbeanstalk-us-east-2-109426728179" # S3 Bucket
+  bucket_path: "docker-react"
+  on:
+    branch: master # Only deploy when master branch has been changed
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
