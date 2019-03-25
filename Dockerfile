@@ -19,5 +19,7 @@ RUN npm run build
 # 2) Copy result of 'npm run build'
 # 3) Start nginx (default command starts it)
 FROM nginx
+# Elasticbeanstalk use Expose command to automatically do the port mapping
+EXPOSE 80 
 COPY --from=builder /app/build /usr/share/nginx/html
 
